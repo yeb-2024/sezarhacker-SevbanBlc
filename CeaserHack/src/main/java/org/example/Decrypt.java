@@ -63,7 +63,7 @@ public class Decrypt extends  JFrame implements ActionListener {
 
     String message = messageText.getText().toUpperCase();
 
-    for (int key = 0; key < SYMBOLS.length(); key++) {
+    for (int key = 0; key <= SYMBOLS.length(); key++) {
       String result = "";
 
       for (char letter : message.toCharArray()) {
