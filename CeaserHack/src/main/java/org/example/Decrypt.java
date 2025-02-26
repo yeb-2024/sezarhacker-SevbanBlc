@@ -10,9 +10,10 @@ public class Decrypt extends  JFrame implements ActionListener {
 
   JPanel keyPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
   JPanel messagePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-
+  JPanel keyMessagePanel = new JPanel(new GridLayout(13, 2));
 
   JLabel title = new JLabel("Sifre Cozme(decrypt)");
+
 
   JLabel messageLabel = new JLabel("sifre(mesaj)");
 
@@ -39,6 +40,8 @@ public class Decrypt extends  JFrame implements ActionListener {
 
     messageText.setFont(new Font("Segoe Script", Font.ITALIC, 15));
 
+    keyMessagePanel.setPreferredSize(new Dimension(300,300));
+
 
 
     messagePanel.add(messageLabel);
@@ -50,10 +53,16 @@ public class Decrypt extends  JFrame implements ActionListener {
     this.add(keyPanel);
     this.add(messagePanel);
     this.add(encryptButton);
+    this.add(keyMessagePanel);
     this.setVisible(true);
   }
   @Override
   public void actionPerformed(ActionEvent e) {
+
+    keyMessagePanel.removeAll();
+    keyMessagePanel.revalidate();
+    keyMessagePanel.repaint();
+    System.out.println("###################################");
 
 
 
@@ -63,7 +72,7 @@ public class Decrypt extends  JFrame implements ActionListener {
 
     String message = messageText.getText().toUpperCase();
 
-    for (int key = 0; key <= SYMBOLS.length(); key++) {
+    for (int key = 1; key <= SYMBOLS.length(); key++) {
       String result = "";
 
       for (char letter : message.toCharArray()) {
@@ -81,15 +90,20 @@ public class Decrypt extends  JFrame implements ActionListener {
           result += SYMBOLS.charAt(index);
         }
         else {
-            result += letter;
-          }
+          result += letter;
+        }
 
 
-    }
+      }
       System.out.println("Key #" + key + ": " + result);
       System.out.println("-----------------------");
 
-      }
+      JLabel keyMessega = new JLabel();
+      keyMessega.setText("Key #" + key + ": " + result);
+      keyMessega.setFont(new Font("Serif", Font.ITALIC, 10));
+      keyMessagePanel.add(keyMessega);
+
+    }
 
 
 
