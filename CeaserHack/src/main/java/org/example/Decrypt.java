@@ -27,7 +27,7 @@ public class Decrypt extends  JFrame implements ActionListener {
     this.setTitle("Decrypt");
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setLayout(new GridLayout(4,1,10,10));
-    this.setSize(500, 500);
+    this.setSize(800, 800);
 
     title.setFont(new Font("Serif", Font.BOLD, 20));
     this.add(title);
@@ -76,22 +76,30 @@ public class Decrypt extends  JFrame implements ActionListener {
       String result = "";
 
       for (char letter : message.toCharArray()) {
+
         int index = SYMBOLS.indexOf(letter);
 
-        if (index != -1) {
+        if(letter == ' ') {
+          result += letter;
+        }
+        else if (index != -1) {
           for (int i = 0; i < key; i++) {
             if (index == 0) {
-              index = SYMBOLS.length() - 1;
-            } else {
+              index = SYMBOLS.length()-1;
+            }
+            else  {
               index--;
             }
 
           }
+
+          if (index < 0){
+            index = 0;
+          }
+
           result += SYMBOLS.charAt(index);
         }
-        else {
-          result += letter;
-        }
+
 
 
       }
@@ -100,7 +108,7 @@ public class Decrypt extends  JFrame implements ActionListener {
 
       JLabel keyMessega = new JLabel();
       keyMessega.setText("Key #" + key + ": " + result);
-      keyMessega.setFont(new Font("Serif", Font.ITALIC, 10));
+      keyMessega.setFont(new Font("Serif", Font.ITALIC, 15));
       keyMessagePanel.add(keyMessega);
 
     }
